@@ -13,6 +13,7 @@ import java.util.Scanner;
  * @author sergy
  */
 public class Cliente {
+    
 private int id = 0;
 private String nome="";
 private int idade = 0;
