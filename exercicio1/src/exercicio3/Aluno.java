@@ -4,6 +4,9 @@
  */
 package exercicio3;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author sergy
@@ -14,6 +17,7 @@ private int numeroDeMatricula = 0;
 private String nome = "";
 private float notaBimestre1 = 0;
 private float notaBimestre2 = 0;
+
  public Aluno(int numeroDeMatricula,String nome,float notaBimestre1, float notaBimestre2){
    this.numeroDeMatricula = numeroDeMatricula;
    this.nome = nome;
@@ -42,7 +46,11 @@ private float notaBimestre2 = 0;
     }
 
     public void setNotaBimestre1(float notaBimestre1) {
-        this.notaBimestre1 = notaBimestre1;
+        if (notaBimestre1 >= 0.0 && notaBimestre1 <= 10.0) {
+            this.notaBimestre1 = notaBimestre1;
+        } else {
+            throw new IllegalArgumentException("A nota deve estar entre 0.0 e 10.0");
+        }
     }
 
     public float getNotaBimestre2() {
@@ -50,7 +58,73 @@ private float notaBimestre2 = 0;
     }
 
     public void setNotaBimestre2(float notaBimestre2) {
-        this.notaBimestre2 = notaBimestre2;
+         if (notaBimestre2 >= 0.0 && notaBimestre2 <= 10.0) {
+            this.notaBimestre2 = notaBimestre2;
+        } else {
+            throw new IllegalArgumentException("A nota deve estar entre 0.0 e 10.0");
+        }
     }
- 
-}
+ public static void main(String[] args) {
+ Scanner entrada = new Scanner(System.in);
+ ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
+ int opc;
+ int aprovados = 0;
+ int reprovados = 0;
+ int exame = 0;
+ float mediaDaClasse = 0.0f;
+ float maiorMedia = 0.0f;
+ float menorMedia = 10.0f;
+ String nomeMaiorMedia = "";
+ String nomeMenorMedia = "";
+ do{
+     
+     System.out.println("Digite os dados do aluno " +(listaAlunos.size()+1)+":");
+     System.out.println("Informe o numero da Matricula:");
+     int numeroDeMatricula = entrada.nextInt();
+     entrada.nextLine();
+     System.out.println("Informe seu nome:");
+     String nome = entrada.nextLine();
+     System.out.println(nome+" Informe a nota do primeiro bimestre:");
+     float notaBimestre1 = entrada.nextFloat();
+     entrada.nextLine();
+     System.out.println(nome+" Informe a nota do segundo bimestre:");
+     float notaBimestre2 = entrada.nextFloat();
+     entrada.nextLine();
+     float media= (notaBimestre1 + notaBimestre2)/2;
+     System.out.println(nome+" obteve média:"+media);
+     
+     if( media >= 0 && media <= 4){
+     System.out.println("Reprovado");
+     reprovados++;
+     }else if(media >= 4 && media < 6){
+         System.out.println("Exame");
+         exame++;
+     }else if(media >= 6 && media <= 10){
+             System.out.println("Aprovado");
+             aprovados++;
+         }
+     mediaDaClasse += media;
+
+            if (media > maiorMedia) {
+                maiorMedia = media;
+                nomeMaiorMedia = nome;
+            }
+
+            if (media < menorMedia) {
+                menorMedia = media;
+                nomeMenorMedia = nome;
+            }
+     
+     Aluno aluno = new Aluno(numeroDeMatricula, nome, notaBimestre1, notaBimestre2);
+     listaAlunos.add(aluno);
+     System.out.println("Deseja continuar? (1- Sim; 0- Não):");
+     opc = entrada.nextInt();
+     entrada.nextLine();
+ }while(opc == 1);
+ for (Aluno a : listaAlunos){
+System.out.println("Total de alunos:"+listaAlunos.size()+" | Numero da Matricula: " + a.getNumeroDeMatricula()+" | Nome: " + a.getNome() + " | Nota do primeiro Bimestre: " + a.getNotaBimestre1()+ " | Nota do segundo Bimestre: " + a.getNotaBimestre2());
+                    }  
+System.out.println("Total de alunos Aprovados:"+aprovados+"\nTotal de alunos Reprovados:"+reprovados+"\nTotal de alunos em Exame:"+exame+"\nMédia da classe:"+(mediaDaClasse /listaAlunos.size())+"\nAluno com a maior média:" + nomeMaiorMedia + " - Média: " + maiorMedia+"\nAluno com a menor média: " + nomeMenorMedia + " - Média: " + menorMedia);
+ }
+ }
+
