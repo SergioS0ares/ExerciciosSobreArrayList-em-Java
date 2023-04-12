@@ -18,18 +18,19 @@ public class definicaoDaQuantidadeDeNumeros {
         Scanner entrada = new Scanner(System.in);
         ArrayList<Integer> numerosInteiros = new ArrayList<Integer>();
         Random random = new Random();
-        int numeroAleatorio = random.nextInt(101);
         int tamanhoDaArrayList = 1;
         
         System.out.println("Informe o tamanho da ArrayList:");
         tamanhoDaArrayList = entrada.nextInt();
         for (int i = 0; i < tamanhoDaArrayList; i++) {
+            int numeroAleatorio = random.nextInt(101);
             numerosInteiros.add(numeroAleatorio);
         }
+        System.out.println("Ordem original:"+numerosInteiros);
         Collections.sort(numerosInteiros);
-        System.out.println(numerosInteiros);
+        System.out.println("Ordem Crecente:"+numerosInteiros);
+        Collections.reverse(numerosInteiros);
+        System.out.println("Ordem Decrecente:"+numerosInteiros);
         
-        for(Integer a : numerosInteiros){
-            System.out.println(numeroAleatorio);
-        }
-}}
+    }
+}
