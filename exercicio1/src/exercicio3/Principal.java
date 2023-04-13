@@ -6,6 +6,7 @@ package exercicio3;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import exercicio3.Aluno;
 
 /**
  *
@@ -24,21 +25,24 @@ public class Principal {
  float menorMedia = 10.0f;
  String nomeMaiorMedia = "";
  String nomeMenorMedia = "";
- 
  do{
-     
+     Aluno aluno = new Aluno(0, "nome", 0, 0);
      System.out.println("Digite os dados do aluno " +(listaAlunos.size()+1)+":");
      System.out.println("Informe o numero da Matricula:");
      int numeroDeMatricula = entrada.nextInt();
+     aluno.setNumeroDeMatricula(numeroDeMatricula);
      entrada.nextLine();
      System.out.println("Informe seu nome:");
      String nome = entrada.nextLine();
+     aluno.setNome(nome);
      System.out.println(nome+" Informe a nota do primeiro bimestre:");
      float notaBimestre1 = entrada.nextFloat();
      entrada.nextLine();
+     aluno.setNotaBimestre1(notaBimestre1);
      System.out.println(nome+" Informe a nota do segundo bimestre:");
      float notaBimestre2 = entrada.nextFloat();
      entrada.nextLine();
+     aluno.setNotaBimestre2(notaBimestre2);
      float media= (notaBimestre1 + notaBimestre2)/2;
      System.out.println(nome+" obteve média:"+media);
      
@@ -64,16 +68,16 @@ public class Principal {
                 nomeMenorMedia = nome;
             }
      
-     Aluno aluno = new Aluno(numeroDeMatricula, nome, notaBimestre1, notaBimestre2);
+    
      listaAlunos.add(aluno);
      System.out.println("Deseja continuar? (1- Sim; 0- Não):");
      opc = entrada.nextInt();
      entrada.nextLine();
  }while(opc == 1);
  for (Aluno a : listaAlunos){
-System.out.println("Total de alunos:"+listaAlunos.size()+" | Numero da Matricula: " + a.getNumeroDeMatricula()+" | Nome: " + a.getNome() + " | Nota do primeiro Bimestre: " + a.getNotaBimestre1()+ " | Nota do segundo Bimestre: " + a.getNotaBimestre2());
+System.out.println(" | Numero da Matricula: " + a.getNumeroDeMatricula() + " | Nome: " + a.getNome() + " | Nota do primeiro Bimestre: " + a.getNotaBimestre1() + " | Nota do segundo Bimestre: " + a.getNotaBimestre2() );
                     }  
-System.out.println("Total de alunos Aprovados:"+aprovados+"\nTotal de alunos Reprovados:"+reprovados+"\nTotal de alunos em Exame:"+exame+"\nMédia da classe:"+(mediaDaClasse /listaAlunos.size())+"\nAluno com a maior média:" + nomeMaiorMedia + " - Média: " + maiorMedia+"\nAluno com a menor média: " + nomeMenorMedia + " - Média: " + menorMedia);
+System.out.println("Total de alunos: " + listaAlunos.size() + "Total de alunos Aprovados:"+aprovados+"\nTotal de alunos Reprovados:"+reprovados+"\nTotal de alunos em Exame:"+exame+"\nMédia da classe:"+(mediaDaClasse /listaAlunos.size())+"\nAluno com a maior média:" + nomeMaiorMedia + " - Média: " + maiorMedia+"\nAluno com a menor média: " + nomeMenorMedia + " - Média: " + menorMedia);
  }
  }
     

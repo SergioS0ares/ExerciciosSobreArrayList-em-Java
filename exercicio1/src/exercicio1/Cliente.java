@@ -85,7 +85,7 @@ public Cliente(int id, String nome, int idade, int telefone){
         Cliente cliente = new Cliente(id, nome, idade, telefone);
         clientes.add(cliente);
 
-        } while(id > 0);
+        } while(id >= 0);
         for (Cliente cliente : clientes) {
             System.out.println("ID: " + cliente.getId() + " | Nome: " + cliente.getNome() + " | Idade: " + cliente.getIdade() + " | Telefone: " + cliente.getTelefone());
         }
